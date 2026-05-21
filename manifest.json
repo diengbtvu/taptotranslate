@@ -4,6 +4,12 @@
   "version": "3.0",
   "default_locale": "vi",
   "description": "__MSG_extDescription__",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "taptotranslate@diengb",
+      "strict_min_version": "109.0"
+    }
+  },
   "permissions": ["storage", "activeTab", "tabs", "menus", "alarms", "notifications"],
   "browser_action": {
     "default_popup": "popup.html",
