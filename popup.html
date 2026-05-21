@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Tap to Translate</h1>
+    <div class="header-actions">
+      <button id="theme-toggle" class="icon-btn" title="Toggle dark mode">🌙</button>
+      <button id="fullscreen-btn" class="icon-btn" title="Full screen">⛶</button>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" data-panel="words">Words</button>
+    <button class="tab" data-panel="flashcard">Flashcard</button>
+    <button class="tab" data-panel="quiz">Quiz</button>
+    <button class="tab" data-panel="history">History</button>
+    <button class="tab" data-panel="stats">Stats</button>
+    <button class="tab" data-panel="settings">⚙</button>
+  </div>
+  <div class="panel active" id="panel-words"></div>
+  <div class="panel" id="panel-flashcard"></div>
+  <div class="panel" id="panel-quiz"></div>
+  <div class="panel" id="panel-history"></div>
+  <div class="panel" id="panel-stats"></div>
+  <div class="panel" id="panel-settings"></div>
+  <script src="src/lib/util.js"></script>
+  <script src="src/lib/cache.js"></script>
+  <script src="src/lib/lemma.js"></script>
+  <script src="src/lib/sr.js"></script>
+  <script src="src/lib/history.js"></script>
+  <script src="src/lib/settings.js"></script>
+  <script src="src/lib/distractor.js"></script>
+  <script src="src/lib/quiz.js"></script>
+  <script src="src/lib/csv.js"></script>
+  <script src="src/lib/streak.js"></script>
+  <script src="src/lib/i18n.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

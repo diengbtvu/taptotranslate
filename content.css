@@ -1,0 +1,207 @@
+#ttt-popup {
+  position: fixed;
+  z-index: 2147483647;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  max-width: 300px;
+  min-width: 180px;
+  max-height: 350px;
+  overflow-y: auto;
+  box-shadow: 0 4px 16px rgba(0,0,0,.12);
+  font: 13px/1.5 'Segoe UI', -apple-system, sans-serif;
+  color: #374151;
+}
+#ttt-popup .ttt-close {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  border: none;
+  background: none;
+  color: #9ca3af;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 2px 5px;
+  border-radius: 3px;
+  line-height: 1;
+}
+#ttt-popup .ttt-close:hover {
+  color: #dc2626;
+  background: #fef2f2;
+}
+#ttt-popup .ttt-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #f3f4f6;
+}
+#ttt-popup .ttt-word {
+  font-weight: 700;
+  font-size: 15px;
+  color: #111827;
+}
+#ttt-popup .ttt-phonetic {
+  color: #6b7280;
+  font-size: 12px;
+}
+#ttt-popup .ttt-lemma {
+  font-size: 11px;
+  color: #16a34a;
+  background: #f0fdf4;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+#ttt-popup .ttt-audio {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #2563eb;
+  padding: 2px;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+}
+#ttt-popup .ttt-audio:hover {
+  background: #eff6ff;
+}
+#ttt-popup .ttt-translation {
+  background: #eff6ff;
+  padding: 5px 8px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d4ed8;
+  border-left: 3px solid #2563eb;
+}
+#ttt-popup .ttt-pos {
+  color: #d97706;
+  font-style: italic;
+  font-size: 11px;
+  margin-top: 4px;
+  font-weight: 600;
+}
+#ttt-popup .ttt-def {
+  font-size: 12px;
+  margin: 2px 0;
+  padding-left: 8px;
+  border-left: 2px solid #e5e7eb;
+}
+#ttt-popup .ttt-example {
+  font-size: 11px;
+  color: #6b7280;
+  font-style: italic;
+  margin: 1px 0 4px 8px;
+}
+#ttt-popup .ttt-syn {
+  font-size: 11px;
+  color: #16a34a;
+  margin-top: 4px;
+}
+#ttt-popup .ttt-ant {
+  font-size: 11px;
+  color: #dc2626;
+  margin-top: 2px;
+}
+#ttt-popup .ttt-save {
+  margin-top: 8px;
+  width: 100%;
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+#ttt-popup .ttt-save:hover {
+  background: #1d4ed8;
+}
+#ttt-popup .ttt-save:disabled {
+  background: #16a34a;
+  cursor: default;
+}
+#ttt-popup .ttt-loading {
+  color: #6b7280;
+  text-align: center;
+  padding: 8px;
+  font-size: 12px;
+}
+#ttt-popup .ttt-more-btn {
+  display: block;
+  margin-top: 6px;
+  padding: 3px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background: #f9fafb;
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 11px;
+}
+#ttt-popup .ttt-more-btn:hover {
+  background: #eff6ff;
+}
+
+#ttt-hover {
+  position: absolute;
+  z-index: 2147483647;
+  background: #111827;
+  color: #fff;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font: 14px/1.4 'Segoe UI', -apple-system, sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+  pointer-events: auto;
+  max-width: 320px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+#ttt-hover .ttt-hover-word {
+  font-weight: 700;
+  color: #93c5fd;
+}
+#ttt-hover .ttt-hover-pos {
+  color: #fbbf24;
+  font-size: 12px;
+  font-style: italic;
+}
+#ttt-hover .ttt-hover-ph {
+  color: #9ca3af;
+  font-size: 12px;
+}
+#ttt-hover .ttt-hover-trans {
+  color: #d1fae5;
+}
+#ttt-hover .ttt-hover-loading {
+  color: #9ca3af;
+}
+#ttt-hover .ttt-hover-save,
+#ttt-hover .ttt-hover-audio {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+#ttt-hover .ttt-hover-save:hover,
+#ttt-hover .ttt-hover-audio:hover {
+  background: rgba(255,255,255,.15);
+}
+
+mark.ttt-highlight {
+  background: #fef9c3;
+  border-bottom: 1px dashed #d97706;
+  padding: 0 1px;
+  border-radius: 2px;
+  cursor: help;
+}

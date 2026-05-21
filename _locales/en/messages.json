@@ -1,0 +1,5 @@
+{
+  "extDescription": { "message": "Click to translate, save vocabulary, flashcards, quiz - TOEIC learning tool" },
+  "cmdTranslate": { "message": "Translate selection" },
+  "cmdToggleHover": { "message": "Toggle hover translate" }
+}
