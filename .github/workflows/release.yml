@@ -22,7 +22,7 @@ jobs:
       - name: Lint & validate
         run: node tools/check.js
 
-      - name: Get version and bump for AMO
+      - name: Get version
         id: version
         run: |
           BASE=$(node -p "JSON.parse(require('fs').readFileSync('manifest.json','utf8')).version")
@@ -35,20 +35,16 @@ jobs:
 
       - name: Try signing with AMO
         id: sign
-        env:
-          AMO_KEY: ${{ secrets.AMO_JWT_ISSUER }}
-          AMO_SECRET: ${{ secrets.AMO_JWT_SECRET }}
-        if: env.AMO_KEY != ''
+        continue-on-error: true
         run: |
           web-ext sign \
             --source-dir=. \
             --artifacts-dir=./artifacts \
-            --api-key="$AMO_KEY" \
-            --api-secret="$AMO_SECRET" \
+            --api-key="${{ secrets.AMO_JWT_ISSUER }}" \
+            --api-secret="${{ secrets.AMO_JWT_SECRET }}" \
             --channel=listed \
             --amo-metadata=amo-metadata.json \
             --ignore-files tests tools SPEC.md TESTING.md package.json node_modules .git .github artifacts web-ext-artifacts
-        continue-on-error: true
 
       - name: Build unsigned XPI (fallback)
         if: steps.sign.outcome != 'success'
@@ -57,16 +53,16 @@ jobs:
           zip -r artifacts/taptotranslate-${{ steps.version.outputs.version }}.xpi . \
             -x ".git/*" ".github/*" "node_modules/*" "tests/*" "tools/*" \
                "SPEC.md" "TESTING.md" "package.json" "package-lock.json" \
-               ".gitignore" "artifacts/*" "web-ext-artifacts/*"
+               ".gitignore" "artifacts/*" "web-ext-artifacts/*" "amo-metadata.json"
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ steps.version.outputs.version }}-${{ github.run_number }}
+          tag_name: v${{ steps.version.outputs.version }}
           name: v${{ steps.version.outputs.version }}
           body: |
-            Download the `.xpi` file below.
-            - If **signed**: install directly in any Firefox
-            - If **unsigned**: use Firefox Developer Edition/Nightly (`xpinstall.signatures.required = false`) or load via `about:debugging`
+            Download the `.xpi` file.
+            - Signed: install in any Firefox
+            - Unsigned: Firefox Developer/Nightly with `xpinstall.signatures.required = false`, or `about:debugging`
           files: artifacts/*
           generate_release_notes: true
