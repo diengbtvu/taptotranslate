@@ -42,6 +42,7 @@ jobs:
             --api-key="$AMO_KEY" \
             --api-secret="$AMO_SECRET" \
             --channel=listed \
+            --amo-metadata=amo-metadata.json \
             --ignore-files tests tools SPEC.md TESTING.md package.json node_modules .git .github artifacts web-ext-artifacts
         continue-on-error: true
 
