@@ -41,7 +41,7 @@ jobs:
             --artifacts-dir=./artifacts \
             --api-key="$AMO_KEY" \
             --api-secret="$AMO_SECRET" \
-            --channel=unlisted \
+            --channel=listed \
             --ignore-files tests tools SPEC.md TESTING.md package.json node_modules .git .github artifacts web-ext-artifacts
         continue-on-error: true
 
