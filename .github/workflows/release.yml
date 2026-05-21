@@ -31,11 +31,14 @@ jobs:
 
       - name: Try signing with AMO
         id: sign
-        if: ${{ secrets.AMO_JWT_ISSUER != '' }}
+        env:
+          AMO_KEY: ${{ secrets.AMO_JWT_ISSUER }}
+          AMO_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+        if: env.AMO_KEY != ''
         run: |
           web-ext sign --source-dir=. --artifacts-dir=./artifacts \
-            --api-key=${{ secrets.AMO_JWT_ISSUER }} \
-            --api-secret=${{ secrets.AMO_JWT_SECRET }} \
+            --api-key=$AMO_KEY \
+            --api-secret=$AMO_SECRET \
             --channel=unlisted \
             --ignore-files="tests/*" "tools/*" "SPEC.md" "TESTING.md" "package.json" "node_modules/*" ".git/*" ".github/*"
         continue-on-error: true
