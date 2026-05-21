@@ -24,18 +24,30 @@ jobs:
 
       - name: Get version
         id: version
-        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+        run: echo "version=$(node -p "JSON.parse(require('fs').readFileSync('manifest.json','utf8')).version")" >> $GITHUB_OUTPUT
 
-      - name: Package XPI
+      - name: Install web-ext
+        run: npm install -g web-ext
+
+      - name: Sign extension
         run: |
-          zip -r taptotranslate-v${{ steps.version.outputs.version }}.xpi . \
-            -x ".git/*" ".github/*" "node_modules/*" "tests/*" "tools/*" \
-               "SPEC.md" "TESTING.md" "package.json" "package-lock.json" ".gitignore"
+          web-ext sign --source-dir=. --artifacts-dir=./artifacts \
+            --api-key=${{ secrets.AMO_JWT_ISSUER }} \
+            --api-secret=${{ secrets.AMO_JWT_SECRET }} \
+            --channel=unlisted
+        continue-on-error: true
+
+      - name: Fallback - build unsigned if signing unavailable
+        if: ${{ !hashFiles('artifacts/*.xpi') }}
+        run: |
+          cd /tmp && zip -r $GITHUB_WORKSPACE/artifacts/taptotranslate-${{ steps.version.outputs.version }}.xpi $GITHUB_WORKSPACE \
+            -x "$GITHUB_WORKSPACE/.git/*" "$GITHUB_WORKSPACE/node_modules/*" "$GITHUB_WORKSPACE/tests/*" "$GITHUB_WORKSPACE/tools/*" "$GITHUB_WORKSPACE/artifacts/*"
+        continue-on-error: true
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.version.outputs.version }}-${{ github.run_number }}
-          name: Release v${{ steps.version.outputs.version }} (build ${{ github.run_number }})
-          files: taptotranslate-v${{ steps.version.outputs.version }}.xpi
+          name: v${{ steps.version.outputs.version }}
+          files: artifacts/*
           generate_release_notes: true
