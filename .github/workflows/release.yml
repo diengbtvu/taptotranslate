@@ -33,9 +33,7 @@ jobs:
       - name: Install web-ext
         run: npm install -g web-ext
 
-      - name: Try signing with AMO
-        id: sign
-        continue-on-error: true
+      - name: Sign with AMO
         run: |
           web-ext sign \
             --source-dir=. \
@@ -46,23 +44,10 @@ jobs:
             --amo-metadata=amo-metadata.json \
             --ignore-files tests tools SPEC.md TESTING.md package.json node_modules .git .github artifacts web-ext-artifacts
 
-      - name: Build unsigned XPI (fallback)
-        if: steps.sign.outcome != 'success'
-        run: |
-          mkdir -p artifacts
-          zip -r artifacts/taptotranslate-${{ steps.version.outputs.version }}.xpi . \
-            -x ".git/*" ".github/*" "node_modules/*" "tests/*" "tools/*" \
-               "SPEC.md" "TESTING.md" "package.json" "package-lock.json" \
-               ".gitignore" "artifacts/*" "web-ext-artifacts/*" "amo-metadata.json"
-
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.version.outputs.version }}
           name: v${{ steps.version.outputs.version }}
-          body: |
-            Download the `.xpi` file.
-            - Signed: install in any Firefox
-            - Unsigned: Firefox Developer/Nightly with `xpinstall.signatures.required = false`, or `about:debugging`
           files: artifacts/*
           generate_release_notes: true
