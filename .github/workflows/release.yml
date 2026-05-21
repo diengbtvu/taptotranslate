@@ -22,9 +22,13 @@ jobs:
       - name: Lint & validate
         run: node tools/check.js
 
-      - name: Get version
+      - name: Get version and bump for AMO
         id: version
-        run: echo "version=$(node -p "JSON.parse(require('fs').readFileSync('manifest.json','utf8')).version")" >> $GITHUB_OUTPUT
+        run: |
+          BASE=$(node -p "JSON.parse(require('fs').readFileSync('manifest.json','utf8')).version")
+          VER="${BASE}.${{ github.run_number }}"
+          node -e "const f='manifest.json';const m=JSON.parse(require('fs').readFileSync(f));m.version='$VER';require('fs').writeFileSync(f,JSON.stringify(m,null,2))"
+          echo "version=$VER" >> $GITHUB_OUTPUT
 
       - name: Install web-ext
         run: npm install -g web-ext

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Tap to Translate",
-  "version": "3.0",
+  "version": "3.0.1",
   "default_locale": "vi",
   "description": "__MSG_extDescription__",
   "browser_specific_settings": {
