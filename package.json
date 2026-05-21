@@ -1,0 +1,10 @@
+{
+  "name": "taptotranslate",
+  "version": "3.0.0",
+  "private": true,
+  "description": "Tap to Translate browser extension - English-Vietnamese vocabulary tool",
+  "scripts": {
+    "test": "node --test --test-reporter=spec 'tests/**/*.test.js'",
+    "check": "node tools/check.js"
+  }
+}

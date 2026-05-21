@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Reading Mode</title>
+<link rel="stylesheet" href="popup.css">
+<style>
+body { width: 100%; max-width: 700px; margin: 0 auto; padding: 24px; }
+.sentence { padding: 8px 12px; margin: 4px 0; border-radius: 6px; cursor: default; line-height: 1.8; font-size: 16px; }
+.sentence:hover { background: var(--primary-light); }
+.sentence .word { cursor: pointer; border-radius: 3px; padding: 0 2px; }
+.sentence .word:hover { background: var(--warning-light); text-decoration: underline; }
+.reading-tooltip { position: absolute; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; box-shadow: 0 4px 12px rgba(0,0,0,.15); z-index: 999; font-size: 14px; max-width: 280px; }
+.reading-tooltip .rt-word { font-weight: 700; }
+.reading-tooltip .rt-trans { color: var(--primary); margin-top: 4px; }
+.reading-tooltip button { margin-top: 6px; padding: 4px 10px; border: none; border-radius: 4px; background: var(--primary); color: #fff; cursor: pointer; font-size: 12px; }
+</style></head><body>
+<h2 style="margin-bottom:12px">Reading Mode</h2>
+<div id="content"></div>
+<script src="src/lib/util.js"></script>
+<script src="src/lib/lemma.js"></script>
+<script src="src/lib/i18n.js"></script>
+<script src="reading.js"></script>
+</body></html>

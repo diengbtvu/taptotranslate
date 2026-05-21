@@ -1,0 +1,5 @@
+{
+  "extDescription": { "message": "Nhấn để dịch, lưu từ vựng, flashcard, quiz - công cụ học TOEIC" },
+  "cmdTranslate": { "message": "Dịch đoạn đã chọn" },
+  "cmdToggleHover": { "message": "Bật/tắt dịch khi hover" }
+}

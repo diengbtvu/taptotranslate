@@ -1,0 +1,53 @@
+{
+  "manifest_version": 2,
+  "name": "Tap to Translate",
+  "version": "3.0",
+  "default_locale": "vi",
+  "description": "__MSG_extDescription__",
+  "permissions": ["storage", "activeTab", "tabs", "menus", "alarms", "notifications"],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon48.png"
+  },
+  "background": {
+    "scripts": [
+      "src/lib/util.js",
+      "src/lib/cache.js",
+      "src/lib/lemma.js",
+      "src/lib/sr.js",
+      "src/lib/history.js",
+      "src/lib/settings.js",
+      "src/lib/streak.js",
+      "src/lib/i18n.js",
+      "background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "all_frames": true,
+      "match_about_blank": true,
+      "js": [
+        "src/lib/util.js",
+        "src/lib/lemma.js",
+        "src/lib/i18n.js",
+        "content.js"
+      ],
+      "css": ["content.css"]
+    }
+  ],
+  "commands": {
+    "translate-selection": {
+      "suggested_key": { "default": "Alt+T" },
+      "description": "__MSG_cmdTranslate__"
+    },
+    "toggle-hover": {
+      "suggested_key": { "default": "Alt+H" },
+      "description": "__MSG_cmdToggleHover__"
+    }
+  },
+  "icons": {
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png"
+  }
+}
