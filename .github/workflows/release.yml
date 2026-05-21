@@ -47,6 +47,7 @@ jobs:
             --api-secret="${{ secrets.AMO_JWT_SECRET }}" \
             --channel=listed \
             --amo-metadata=amo-metadata.json \
+            --timeout=900000 \
             --ignore-files tests tools SPEC.md TESTING.md package.json node_modules .git .github artifacts web-ext-artifacts
 
       - uses: actions/upload-artifact@v4
